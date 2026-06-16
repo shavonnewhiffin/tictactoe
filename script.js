@@ -73,7 +73,15 @@ function checkWin() {
         [2, 4, 6]
     ]
 
-    // Loop through winning combinations. Pull the 3 indicies from reach subarray and the symbol stored at those indicies. If 3 symbols are the same, its a win. If symbols are not the same, keep game going.
+    // Loop through winning combinations. Pull the 3 indicies from reach subarray and the symbol stored at those indicies. If 3 symbols are the same, its a win. If symbols are not the same+
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+    // 
+    // , keep game going.
     for (let i = 0; i < winningIndicies.length; i++){
         const matchingIndicies = winningIndicies[i];
         let symbol1 = board[matchingIndicies[0]]
