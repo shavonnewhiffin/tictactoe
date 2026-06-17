@@ -1,7 +1,7 @@
 const title = document.querySelector('.board__title')
 const allSquares = document.querySelectorAll('.board__square')
 
-let currentPlayer ="X";
+let currentPlayer ="Bodhi";
 let gameOver = false;
 let board = new Array(9)
 
@@ -16,7 +16,7 @@ allSquares.forEach((square, i) => {
 
         // Set the selected square to current player's value, remember it, and display their symbol there
         board[i] = currentPlayer;
-        square.innerHTML = currentPlayer;
+        square.innerHTML = `<img src="assets/${currentPlayer === "Bodhi" ? "Bodhi.png" : "Sadie.png"}">`;
 
         // Every click, check for a win
         if (checkWin()) {
@@ -100,6 +100,6 @@ function checkWin() {
 }
 
 function switchPlayers() {
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    currentPlayer = currentPlayer === "Bodhi" ? "Sadie" : "Bodhi";
 }
 
