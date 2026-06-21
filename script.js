@@ -1,5 +1,6 @@
 const title = document.querySelector('.board__title')
 const allSquares = document.querySelectorAll('.board__square')
+const celebration = document.querySelector('.celebration')
 
 let currentPlayer ="Bodhi";
 let gameOver = false;
@@ -16,11 +17,18 @@ allSquares.forEach((square, i) => {
 
         // Set the selected square to current player's value, remember it, and display their symbol there
         board[i] = currentPlayer;
-        square.innerHTML = `<img src="assets/${currentPlayer === "Bodhi" ? "Bodhi.png" : "Sadie.png"}">`;
+        square.innerHTML = `<img src="assets/${currentPlayer === "Bodhi" ? "Bo.png" : "Sad.png"}">`
+        if(currentPlayer === "Bodhi"){
+            square.classList.add('board__square--bodhi')
+        }else {
+            square.classList.add('board__square--sadie')
+        };
 
         // Every click, check for a win
         if (checkWin()) {
             title.innerHTML = `${currentPlayer} wins!`;
+            title.classList.add('celebration__text');
+            celebrateWin(currentPlayer);
             return gameOver = true;
         }
 
@@ -38,13 +46,39 @@ function restartGame() {
     // Reset the game
     gameOver = false;
     // Reset the title font
+    title.classList.remove('celebration__text')
     title.innerHTML = `${currentPlayer}'s turn`;
     // Reset each square
     allSquares.forEach(square => {
         square.innerHTML = "";
+        square.classList.remove('board__square--bodhi', 'board__square--sadie')
     })
     // Reset the board
     board = new Array(9)
+    // Clear any falling celebration icons
+    celebration.innerHTML = "";
+}
+
+// Spawn falling icons of the winning player that animate down from the top of the screen
+function celebrateWin(player) {
+    const imageSrc = `assets/${player === "Bodhi" ? "Bo.png" : "Sad.png"}`;
+    const iconCount = 30;
+
+    for (let i = 0; i < iconCount; i++) {
+        const icon = document.createElement('img');
+        icon.src = imageSrc;
+        icon.className = 'celebration__icon';
+
+        const size = 50 + Math.random() * 50;
+        icon.style.left = `${Math.random() * 100}%`;
+        icon.style.width = `${size}px`;
+        icon.style.height = `${size}px`;
+        icon.style.animationDuration = `${2 + Math.random() * 2}s`;
+        icon.style.animationDelay = `${Math.random() * 1.5}s`;
+
+        icon.addEventListener('animationend', () => icon.remove());
+        celebration.appendChild(icon);
+    }
 }
 
 // Loop through the board. If any squares in the board are empty its not a tie yet.
