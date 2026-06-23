@@ -8,6 +8,10 @@
 
 body {
     background-color: #FFF0F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
 }
 
 h1 {
@@ -27,6 +31,50 @@ p {
     flex-direction: column;;
 }
 
+/* DIALOGUE BOX */
+
+.avatar-wrapper{
+    width: 100%;
+}
+
+.avatar {
+    width: 100%;
+    max-width: 600px;
+}
+
+.text-area {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    flex-grow: 1;
+    border: 1px solid #E0799A;
+    padding: 8px;
+    background-color: white;
+}
+
+.dialogue__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Next Button for Tutorial */
+.tutorial-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+.tutorial-btn:hover {
+    background-color: #218838;
+}
+
+/* Game Board */
+
 .board__wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -35,6 +83,14 @@ p {
     width: 600px;
     height: 600px;
     margin-bottom: 24px;
+    opacity: 0.4; /* Visually locked */
+    pointer-events: none; /* Physically locked */
+    transition: opacity 0.3s ease;
+}
+
+.active {
+    opacity: 1;
+    pointer-events: auto; /* Unlocked */
 }
 
 .board__square {
