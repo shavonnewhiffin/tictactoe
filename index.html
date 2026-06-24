@@ -8,21 +8,23 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-<div class="dialogue__container">
-    <div class="text-area">
-        <p class="speech-text" id="speech-bubble">Loading introduction...</p>
-        <button class="tutorial-btn" id="next-btn">Next</button>
-        <button class="tutorial-btn" id="skip-btn" onclick="skipTutorial()">Skip tutorial</button>
-    </div>
-    <figure className="avatar--wrapper">
-        <img src="assets/boexplain2.png" class="avatar" alt="">
-    </figure>
-</div>
-
     <div class="celebration"></div>
     <div class="container">
     <h1 class="board__title">Tic Tac Bo</h1>
-    <p>Let's play Tic Tac Toe with Shavonne's best friends! </p>
+    <div class="dialogue__container">
+        <div class="text-area">
+            <p class="speech-text" id="speech-bubble">Loading introduction...</p>
+            <button class="tutorial-btn" id="next-btn">Next</button>
+            <button class="tutorial-btn" id="skip-btn" onclick="skipTutorial()">Skip tutorial</button>
+        </div>
+        <figure class="avatar--wrapper">
+            <picture>
+                <source media="(max-width: 1440px)" srcset="assets/Bo.png">
+                <img src="assets/boexplain2.png" class="avatar" alt="">
+            </picture>
+        </figure>
+    </div>
+    <p class="intro-text">Let's play Tic Tac Toe with Shavonne's best friends! </p>
     <div class="board__wrapper">
         <button class="board__square"></button>
         <button class="board__square"></button>

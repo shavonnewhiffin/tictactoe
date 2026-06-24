@@ -15,7 +15,7 @@ body {
 }
 
 h1 {
-    color: #1A1A2E;
+    color: #2D1B45;
 }
 
 p {
@@ -35,42 +35,89 @@ p {
 
 .avatar-wrapper{
     width: 100%;
+    margin-left: 32px;
+    margin-bottom: 32px;
 }
 
 .avatar {
-    width: 100%;
-    max-width: 600px;
+    display: block;
+    width: 500px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .text-area {
-    position: absolute;
-    top: 3%;
-    left: 50%;
-    flex-grow: 1;
+    position: relative;
     border: 1px solid #E0799A;
-    padding: 8px;
+    border-radius: 16px;
+    padding: 16px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.text-area::before {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #E0799A;
+}
+
+.text-area::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
 }
 
 .dialogue__container {
     display: flex;
     flex-direction: column;
-    position: relative;
+    gap: 20px;
+    position: fixed;
+    top: 50%;
+    left: 24px;
+    transform: translateY(-50%);
+    width: 380px;
 }
 
 /* Next Button for Tutorial */
+.speech-text {
+    font-size: 14px;
+    text-align: center;
+    padding: 0px 4px;
+    margin: 0;
+    line-height: 22px;
+
+}
 .tutorial-btn {
-    background-color: #28a745;
+    background-color:
+    #C5B5E8;
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 13px;
 }
+
 .tutorial-btn:hover {
-    background-color: #218838;
+    background-color: #2D1B45;
 }
 
 /* Game Board */
@@ -93,6 +140,10 @@ p {
     pointer-events: auto; /* Unlocked */
 }
 
+.board__title {
+    margin-top: 32px
+}
+
 .board__square {
     border: 2px solid #F2C4D0;
     background-color: white;
@@ -103,6 +154,11 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.1s ease;
+}
+
+.board__square:active {
+    transform: scale(0.92);
 }
 
 .board__square--bodhi {
@@ -128,6 +184,11 @@ p {
     background-color: #F2C4D0;
     border-color: #E0799A;
     cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.restart:active {
+    transform: scale(0.92);
 }
 
 .celebration {
@@ -154,7 +215,7 @@ p {
 }
 
 .celebration__text {
-background: linear-gradient(90deg, #1A1A2E, #E0799A, #C8935A, #C5B5E8);
+background: linear-gradient(90deg, #1A1A2E, #E0799A, #C8935A, #C5B5E8, #2D1B45);
 color: transparent;
 background-clip: text;
 -webkit-background-clip: text;
@@ -180,5 +241,67 @@ animation: gradient-animation 6s ease infinite;
     100% {
         transform: translateY(115vh) rotate(260deg);
         opacity: 0.9;
+    }
+}
+
+@media (max-width: 1440px) {
+    .board__title {
+        order: 1;
+    }
+
+    .intro-text {
+        order: 2;
+    }
+
+    .dialogue__container {
+        order: 3;
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 24px;
+    }
+
+    .board__wrapper {
+        order: 4;
+    }
+
+    .restart {
+        order: 5;
+    }
+
+    .avatar {
+        width: 240px;
+        max-width: 240px;
+    }
+
+    .board__wrapper {
+        width: 90vw;
+        height: 90vw;
+        max-width: 600px;
+        max-height: 600px;
+    }
+}
+
+@media (max-width: 1440px) {
+    p {
+        text-align: center;
+    }
+}
+
+@media (min-width: 1441px) {
+    .dialogue__container {
+        gap: 0;
+    }
+
+    .text-area {
+        position: relative;
+        left: 60px;
+    }
+
+    .avatar--wrapper {
+        margin-top: -50px;
     }
 }

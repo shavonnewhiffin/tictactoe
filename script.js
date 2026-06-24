@@ -1,28 +1,26 @@
 const title = document.querySelector(".board__title");
 const allSquares = document.querySelectorAll(".board__square");
 const celebration = document.querySelector(".celebration");
+const dialogueContainer = document.querySelector('.dialogue__container')
+const restart = document.querySelector('.restart')
 
 // UI Document Selectors
 const speechBubble = document.getElementById("speech-bubble");
 const nextBtn = document.getElementById("next-btn");
-const skipBtn = document.getElementById("skip-btn");
 const gameBoard = document.querySelector(".board__wrapper");
-const cells = document.querySelectorAll(".cell");
 
 nextBtn.addEventListener("click", advanceTutorial);
 
 // Tutorial Dialogue Script Array
 const tutorialLines = [
-  "Hello! I am Bodhi, your Tic-Tac-Toe coach.",
+  "Hi! I'm Bodhi, your Tic-Tac-Toe coach.",
   "Before we play, let me explain how to win.",
   "Your goal is to get 3 of me or my sister Sadie in a straight row.",
   "This can be horizontal, vertical, or diagonal.",
   "I'll go first. The board is locked until we finish chatting!",
-  "Are you ready? Click next to unlock the board and start!",
 ];
 
 let currentLineIndex = 0;
-let isTutorialOver = false;
 
 let currentPlayer = "Bodhi";
 let gameOver = false;
@@ -38,26 +36,18 @@ function advanceTutorial() {
     // Change button text on the last statement
     if (currentLineIndex === tutorialLines.length - 1) {
       nextBtn.textContent = "Start Game";
-      nextBtn.style.backgroundColor = "#007bff";
+      nextBtn.style.backgroundColor = "#E0799A";
     }
   } else {
     // Tutorial Finished
-    isTutorialOver = true;
-    nextBtn.style.display = "none"; // Hide button
-    skipBtn.style.display = "none";
-    speechBubble.innerHTML =
-      "<strong>Bodhi:</strong> Match started! I'll choose a square.";
     gameBoard.classList.add("active"); // Unlock board layout via CSS class
+    dialogueContainer.style.display = "none";
   }
 }
 
 function skipTutorial() {
-  isTutorialOver = true;
-  nextBtn.style.display = "none"; // Hide button
-  skipBtn.style.display = "none";
-  speechBubble.innerHTML =
-    "<strong>Bodhi</strong> Match started! I'll go first.";
   gameBoard.classList.add("active"); // Unlock board layout via CSS class
+  dialogueContainer.style.display = "none";
 }
 
 //  Event listener for square clicks
@@ -89,8 +79,7 @@ allSquares.forEach((square, i) => {
 
     if (checkDraw()) {
       title.innerHTML = `It's a tie!`;
-      speechBubble.innerHTML =
-        "<strong>Bodhi:</strong> Waaaah its a tie! I wish I won!";
+      restart.classList.add("celebration__text");
       return (gameOver = true);
     }
 
@@ -104,6 +93,7 @@ function restartGame() {
   gameOver = false;
   // Reset the title font
   title.classList.remove("celebration__text");
+  restart.classList.remove("celebration__text");
   title.innerHTML = `${currentPlayer}'s turn`;
   // Reset each square
   allSquares.forEach((square) => {
